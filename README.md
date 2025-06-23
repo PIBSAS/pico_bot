@@ -15,7 +15,7 @@
 -6 pulsadores luces blanca, rojas,verdes,bocina,modo autonomo y melodia 
 ## Codigos
 
--Pico_bot.py codigo completo 
--mando.py codigo para el mando
--Motores y servo.py codigo de prueba  motores y servo
--Pico bot con mando y servo.py codigo completo para robot con servo que mueve el ultrasonido  
+-Pico_bot codigo completo 
+-mando codigo para el mando
+-Motores y servo codigo de prueba  motores y servo
+-Pico bot con mando y servo codigo completo para robot con servo que mueve el ultrasonido  
