@@ -16,6 +16,6 @@
 ## Codigos
 
 - Pico_bot.py: codigo completo 
-- mando codigo para el mando
-- Motores y servo codigo de prueba  motores y servo
-- Pico bot con mando y servo codigo completo para robot con servo que mueve el ultrasonido  
+- mando.py codigo: para el mando
+- Motores y servo.py: codigo de prueba  motores y servo
+- Pico bot con mando y servo.py: codigo completo para robot con servo que mueve el ultrasonido  
