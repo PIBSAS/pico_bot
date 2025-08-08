@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+#logo {
+    display: block;
+    margin: 10px auto;
+    max-width: 150px;
+}
+
+#archivos {
+    margin-top: 20px;
+}
+
+#lista-archivos {
+    list-style: none;
+    padding: 0;
+}
+
+#lista-archivos li {
+    margin: 8px 0;
+}
+
+a {
+    color: #0078d4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
