@@ -37,12 +37,14 @@ def mover_servo(angulo):
     servo.duty_u16(duty)
     time.sleep(0.3)
 
+
 def adelante():
     rojos.value(0)
     motorA1.low()
     motorA2.high()
     motorB1.high()
     motorB2.low()
+
 
 def atras():
     rojos.value(0)
@@ -51,12 +53,14 @@ def atras():
     motorB1.low()
     motorB2.high()
 
+
 def derecha():
     rojos.value(0)
     motorA1.high()
     motorA2.low()
     motorB1.high()
     motorB2.low()
+
 
 def izquierda():
     rojos.value(0)
@@ -65,21 +69,25 @@ def izquierda():
     motorB1.low()
     motorB2.high()
 
+
 def esperando_orden():
     motorA1.low()
     motorA2.low()
     motorB1.low()
     motorB2.low()
 
+
 def para():
     rojos.value(1)
     esperando_orden()
+
 
 def bocina():
     buzzer.freq(500)
     buzzer.duty_u16(10000)
     time.sleep(0.5)
     buzzer.duty_u16(0)
+
 
 def detecta():
     para()
@@ -93,6 +101,7 @@ def detecta():
     buzzer.duty_u16(0)
     time.sleep(1)
     rojos.value(0)
+
 
 # ---------------- DETECCIÓN DE OBSTÁCULOS ----------------
 def medir_distancia():
@@ -116,6 +125,7 @@ def medir_distancia():
     duracion = time.ticks_diff(pulse_end, pulse_start)
     distancia = duracion * 0.0343 / 2
     return distancia
+
 
 def autonomo():
     print("Modo autónomo activado.")
@@ -156,6 +166,7 @@ def autonomo():
                 print("Saliendo del modo autónomo.")
                 break
 
+
 # ---------------- LUCES Y BALIZA ----------------
 luces = [
     (blancos, 0.5), (verdes, 0.5), (rojos, 0.5),
@@ -166,16 +177,19 @@ luces = [
     (blancos, 0.5), (verdes, 0.5), (rojos, 0.5)
 ]
 
+
 def baliza():
     blancos.value(1); verdes.value(0); rojos.value(0); bocina()
     blancos.value(0); verdes.value(1); rojos.value(0); bocina()
     blancos.value(0); verdes.value(0); rojos.value(1); bocina()
+
 
 def controlar_luces():
     for led, duracion in luces:
         led.on()
         time.sleep(duracion)
         led.off()
+
 
 # ---------------- MELODÍAS ----------------
 notas = {
@@ -203,6 +217,7 @@ melodia2 = [
     ('Re', 0.3), ('Re', 0.3), ('Mi', 0.3), ('Re', 0.6), ('Sol', 0.6)
 ]
 
+
 def reproducir_nota(nota, duracion):
     frecuencia = notas.get(nota, 0)
     if frecuencia == 0:
@@ -214,25 +229,31 @@ def reproducir_nota(nota, duracion):
     buzzer.duty_u16(0)
     time.sleep(0.05)
 
+
 def reproducir_melodia1():
     for nota, duracion in melodia1:
         reproducir_nota(nota, duracion)
+
 
 def reproducir_melodia2():
     for nota, duracion in melodia2:
         reproducir_nota(nota, duracion)
 
+
 # ---------------- UART ----------------
 def enviar_datos(dato):
     modulo.write(dato + '\n')
+
 
 def recibir_datos():
     if modulo.any():
         return modulo.read().decode('utf-8').strip()
     return None
 
+
 def hilo_melodia():
     reproducir_melodia1()
+
 
 # ---------------- EJECUCIÓN PRINCIPAL ----------------
 _thread.start_new_thread(hilo_melodia, ())
