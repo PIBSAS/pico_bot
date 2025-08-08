@@ -11,6 +11,19 @@ for (let i = 1; i <= 99; i++) {
 }
 orden.push("motores y servo", "mando", "ssd1306");
 
+function forzarDescarga(url, nombre) {
+    fetch(url)
+        .then(res => res.blob())
+        .then(blob => {
+            const enlace = document.createElement("a");
+            enlace.href = URL.createObjectURL(blob);
+            enlace.download = nombre;
+            document.body.appendChild(enlace);
+            enlace.click();
+            enlace.remove();
+        });
+}
+
 fetch(`https://api.github.com/repos/${usuario}/${repo}/contents/`)
     .then(response => response.json())
     .then(data => {
@@ -42,9 +55,12 @@ fetch(`https://api.github.com/repos/${usuario}/${repo}/contents/`)
         archivosPy.forEach(archivo => {
             let li = document.createElement("li");
             let enlace = document.createElement("a");
-            enlace.href = archivo.url;
-            enlace.download = archivo.nombre + ".py";
+            enlace.href = "#";
             enlace.textContent = archivo.nombre;
+             enlace.addEventListener("click", e => {
+                e.preventDefault();
+                forzarDescarga(archivo.url, archivo.nombre + ".py");
+            });
             li.appendChild(enlace);
             listaArchivos.appendChild(li);
         });
@@ -52,9 +68,12 @@ fetch(`https://api.github.com/repos/${usuario}/${repo}/contents/`)
         archivosPDF.forEach(pdf => {
             let li = document.createElement("li");
             let enlace = document.createElement("a");
-            enlace.href = pdf.url;
-            enlace.download = pdf.nombre + ".pdf";
+            enlace.href = "#";
             enlace.textContent = `${pdf.nombre} (PDF)`;
+            enlace.addEventListener("click", e => {
+                e.preventDefault();
+                forzarDescarga(pdf.url, pdf.nombre + ".pdf");
+            });
             li.appendChild(enlace);
             listaPDF.appendChild(li);
         });
