@@ -9,7 +9,7 @@ let orden = ["Pico_bot"];
 for (let i = 1; i <= 99; i++) {
     orden.push(`Leccion_${i}`);
 }
-orden.push("motores y servo", "mando", "ssd1306");
+orden.push("motores_y_servo", "mando", "ssd1306");
 
 function forzarDescarga(url, nombre) {
     fetch(url)
