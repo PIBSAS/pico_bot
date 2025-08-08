@@ -1,5 +1,5 @@
 from machine import Pin
-import utime
+import time
 
 # --- Configuración de pines ---
 
@@ -22,20 +22,20 @@ motorB2 = Pin(21, Pin.OUT)
 def ultrasonico_sensor():
     """Mide la distancia y devuelve True si hay un obstáculo a menos de 20 cm."""
     trig.value(0)
-    utime.sleep_us(2)  # Asegura que trig está bajo
+    time.sleep_us(2)  # Asegura que trig está bajo
     trig.value(1)
-    utime.sleep_us(10)
+    time.sleep_us(10)
     trig.value(0)
 
     while echo.value() == 0:
-        start_time = utime.ticks_us()
+        start_time = time.ticks_us()
     while echo.value() == 1:
-        end_time = utime.ticks_us()
+        end_time = time.ticks_us()
 
-    pulse_duration = utime.ticks_diff(end_time, start_time)
+    pulse_duration = time.ticks_diff(end_time, start_time)
     distance = (pulse_duration * 0.0343) / 2
     print("Distancia:", distance, "cm")
-    utime.sleep(0.1)
+    time.sleep(0.1)
 
     return distance < 20
 
@@ -74,14 +74,14 @@ def parar():
 while True:
     if ultrasonico_sensor():
         parar()
-        utime.sleep(0.5)
+        time.sleep(0.5)
         atras()
-        utime.sleep(0.5)
+        time.sleep(0.5)
         parar()
-        utime.sleep(0.5)
+        time.sleep(0.5)
         derecha()
-        utime.sleep(0.5)
+        time.sleep(0.5)
         parar()
-        utime.sleep(0.5)
+        time.sleep(0.5)
     else:
         adelante()
