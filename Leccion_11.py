@@ -1,5 +1,5 @@
 from machine import UART, Pin, PWM
-import utime, time, _thread
+import time, _thread
 
 # Comunicación Bluetooth (UART0)
 modulo = UART(0, 9600, tx=Pin(16), rx=Pin(17))
@@ -65,7 +65,7 @@ def detecta():
     parar()
     bocina()
     bncs()
-    utime.sleep(0.3)
+    time.sleep(0.3)
     blancas.value(0)
     rojas.value(0)
     buzzer.duty_u16(0)
@@ -97,17 +97,17 @@ def inicio():
 # Sensor ultrasónico
 def ultrasonido():
     trig.low()
-    utime.sleep_us(2)
+    time.sleep_us(2)
     trig.high()
-    utime.sleep_us(10)
+    time.sleep_us(10)
     trig.low()
 
     while echo.value() == 0:
-        pulse_start = utime.ticks_us()
+        pulse_start = time.ticks_us()
     while echo.value() == 1:
-        pulse_end = utime.ticks_us()
+        pulse_end = time.ticks_us()
 
-    pulse_duration = utime.ticks_diff(pulse_end, pulse_start)
+    pulse_duration = time.ticks_diff(pulse_end, pulse_start)
     distancia = pulse_duration * 0.0343 / 2
     return distancia
 
