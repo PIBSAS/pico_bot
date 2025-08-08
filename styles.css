@@ -8,8 +8,8 @@ body {
 #logo {
     display: block;
     margin: 10px auto;
-    max-width: 350px;
-}
+    /* max-width: 350px;
+*/}
 
 #archivos {
     margin-top: 20px;
@@ -35,4 +35,22 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+footer img {
+    display: block;
+    margin: 0 auto;
+    max-width: 80px;
+}
+
+footer p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
 }
