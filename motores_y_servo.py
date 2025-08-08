@@ -1,4 +1,4 @@
-from machine import Pin , PWM
+from machine import Pin, PWM
 import time
 
 # Configura el pin, por ejemplo, el GPIO 2
@@ -12,6 +12,7 @@ motorB2 = Pin(21, Pin.OUT)  # Motor B2, dirección 2
 servo = PWM(Pin(1))
 servo.freq(50)
 
+
 def mover_servo(angulo):
     min_pulse = 500
     max_pulse = 2500
@@ -21,45 +22,42 @@ def mover_servo(angulo):
     time.sleep(0.3)
 
 
-
-
-
 def adelante():
-    
     motorA1.low()
     motorA2.high()
     motorB1.high()
     motorB2.low()
+
 
 def atras():
-    
     motorA1.high()
     motorA2.low()
     motorB1.low()
     motorB2.high()
 
+
 def derecha():
-   
     motorA1.high()
     motorA2.low()
     motorB1.high()
     motorB2.low()
 
-def izquierda():
-    
+
+def izquierda(): 
     motorA1.low()
     motorA2.high()
     motorB1.low()
     motorB2.high()
-    
+
+
 def esperando_orden():
     motorA1.low()
     motorA2.low()
     motorB1.low()
     motorB2.low()
 
-def para():
-   
+
+def para(): 
     motorA1.low()
     motorA2.low()
     motorB1.low()
